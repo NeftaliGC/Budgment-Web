@@ -1,0 +1,64 @@
+.splash-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-green);
+    z-index: 9999;
+    transition: opacity 300ms ease;
+    opacity: 1;
+}
+
+.splash-overlay.fade {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.splash-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    max-width: 90%;
+}
+
+.splash-logo {
+    border-radius: 10px;
+    object-fit: contain;
+    display: block;
+}
+
+.splash-title {
+    margin: 0;
+    font-size: 3.25rem;
+    font-weight: 600;
+}
+
+/* Spinner simple con border */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.356);
+    border-top-color: rgba(255, 255, 255, 0.8);
+    animation: spin 800ms linear infinite;
+    box-sizing: border-box;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+    .splash-title {
+        font-size: 1.5rem;
+    }
+
+    .splash-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+}

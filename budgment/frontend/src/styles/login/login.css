@@ -1,0 +1,93 @@
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    height: 100vh;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    gap: 0.8rem;
+    padding: 24px;  
+    border-radius: 8px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid var(--secondary);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    color: var(--primary-contrast);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: var(--secondary);
+}
+
+.forgot-password {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--foreground);
+    transition: text-decoration 0.3s ease;
+}
+
+.forgot-password a:hover:focus {
+    text-decoration: underline;
+    color: var(--accent);
+}
+
+.register {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--foreground);
+}
+
+.register a {
+    color: var(--accent);
+    transition: text-decoration 0.3s ease;
+}
+
+.register a:hover:focus {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .login-form {
+        width: 100%;
+    }
+    
+    .login-form input,
+    .login-form button {
+        font-size: 1rem;
+    }
+    
+    .forgot-password,
+    .register {
+        font-size: 1rem;
+    }
+}

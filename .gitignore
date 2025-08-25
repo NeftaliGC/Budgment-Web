@@ -1,0 +1,6 @@
+
+# Base de datos
+*.sqlite
+*.db
+*.db-journal
+*.log

@@ -1,0 +1,130 @@
+// DBML final — diseñado para SQLite
+// IDs se mantienen como String (p. ej. UUIDs), ajusta si prefieres INTEGER autoincrement.
+Table users {
+  id String [pk]
+  name String
+  username String [unique]
+  password_hash String
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+}
+
+Table accounts {
+  id String [pk]
+  user_id String [ref: > users.id]
+  name String
+  currency Char(3) // ISO-4217 (p. ej. "MXN", "USD")
+  balance_cache_encrypted Blob // ciphertext (app guarda el blob)
+  balance_iv Blob              // IV usado para el cifrado
+  balance_enc_version Int      // versión para rotación de claves/algoritmos
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+  deleted_at datetime // soft-delete (opcional)
+}
+
+Table categories {
+  id String [pk]
+  user_id String [ref: > users.id]
+  name String
+  type nature // "Gasto" | "Ingreso"
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+  deleted_at datetime // soft-delete
+}
+
+Table transactions {
+  id String [pk]
+  user_id String [ref: > users.id]
+  account_id String [ref: > accounts.id]
+  category_id String [ref: > categories.id]
+  amount INTEGER // cantidad en centavos (signed, p. ej. -12345 = -123.45)
+  currency Char(3) // opcional; si NULL se asume currency de la cuenta
+  exchange_rate_at_transaction REAL // opcional: si hubo conversión
+  description String
+  date date // fecha efectiva de la transacción (YYYY-MM-DD)
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+  transfer_id String // opcional: id común para pares de transferencias (debe existir 2 tx)
+  recurring_id String [ref: - recurring_transactions.id] // opcional referencia a origen recurrente
+}
+
+Table budgets {
+  id String [pk]
+  user_id String [ref: > users.id]
+  name String
+  amount_limit INTEGER // en centavos
+  scope scopes // Global | Category
+  // Periodo estructurado:
+  period_type Int // ver mapping abajo (ej. 1=WEEKLY, 2=BIWEEKLY, 3=MONTHLY, ..., 99=CUSTOM)
+  period_interval Int // "cada N unidades" (ej. interval=3 + unit=MONTH => cada 3 meses)
+  period_unit period_units // DAY | WEEK | MONTH | YEAR (uso general)
+  start_date date
+  end_date date
+  auto_create_recurring Boolean [default: false] // si este presupuesto genera tx automáticas
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+}
+
+Table budget_categories {
+  id String [pk]
+  budget_id String [ref: > budgets.id]
+  category_id String [ref: > categories.id]
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  // Unicidad por presupuesto+categoria
+  Indexes {
+    (budget_id, category_id) [unique]
+  }
+}
+
+Table recurring_transactions {
+  id String [pk]
+  user_id String [ref: > users.id]
+  account_id String [ref: > accounts.id]
+  category_id String [ref: > categories.id]
+  base_amount INTEGER // centavos (signed or positive según convención)
+  currency Char(3)
+  // Periodo estructurado (mismo enfoque que budgets)
+  period_type Int
+  period_interval Int
+  period_unit period_units
+  anchor_date date // fecha base desde donde se calculan las ocurrencias
+  next_occurrence date
+  end_date date
+  active Boolean [default: true]
+  created_at datetime [default: `CURRENT_TIMESTAMP`]
+  updated_at datetime
+}
+
+Enum scopes {
+  "Global"
+  "Category"
+}
+
+Enum nature {
+  "Gasto"
+  "Ingreso"
+}
+
+Enum period_units {
+  "DAY"
+  "WEEK"
+  "MONTH"
+  "YEAR"
+}
+
+/*
+  Nota sobre `period_type` (mapping sugerido — almacena entero):
+    1 = WEEKLY
+    2 = BIWEEKLY (quincenal)
+    3 = MONTHLY
+    4 = BIMONTHLY
+    5 = QUARTERLY
+    6 = FOUR_MONTHS
+    7 = SEMI_ANNUAL
+    8 = ANNUAL
+    99 = CUSTOM
+
+  - Para expresiones personalizadas (ej. "quincenal cada 3 meses") puede usarse:
+      period_type = 99, period_interval = 3, period_unit = MONTH
+    o bien custom_rrule = "FREQ=MONTH;INTERVAL=3;BYDAY=..." según necesidad.
+*/
