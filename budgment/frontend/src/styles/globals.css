@@ -10,31 +10,22 @@
   --orange-peel: #ffa114ff;
   --falu-red: #7a1613ff;
 
-  --background: var(--aquamarine);
-  --foreground: var(--night);
-
-  /* Roles semánticos sugeridos */
-  --bg: var(--mint-cream);
-  --surface: #e9fff5;        /* ligera variación si quieres */  
+  --bg: var(--dark-green);
+  --surface: var(--mint-cream);
   --text: var(--night);
-
-  --primary: var(--pine-green);
-  --primary-contrast: #ffffff;
-
-  --secondary: var(--jungle-green);
-  --secondary-contrast: var(--night);
-
-  --accent: var(--orange-peel);
-  --accent-contrast: var(--night);
-
-  --success-surface: var(--aquamarine);
-  --danger: var(--falu-red);
+  --foreground: var(--mint-cream);
+  --acction-bar: var(--pine-green);
+  --options-bar: var(--pine-green);
+  --highlight: var(--orange-peel);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--dark-green);
-    --foreground: var(--mint-cream);
+    --bg: var(--castleton-green);
+    --surface: var(--dark-green);
+    --acction-bar: var(--dark-green);
+    --options-bar: var(--castleton-green);
+    --text: var(--mint-cream);
   }
 }
 
