@@ -2,7 +2,7 @@
 Budgment Web es una aplicación web diseñada para ayudar a los usuarios a gestionar sus finanzas personales de manera eficiente. La aplicación permite a los usuarios registrar ingresos y gastos, categorizar transacciones, y visualizar informes financieros detallados.
 
 Este proyecto academico es una version web simplificada de la aplicacion movil *Budgment*, propiedad intelectual de [Fabian Neftaly Guia Cruz (NeftaliGC)](https://github.com/NeftaliGC). Se comparte unicamente con fines academicos. Todos los derechos comerciales y de marca pertenecen al autor original. Leer el archivo [LICENCE.md](./LICENCE.md) para mas detalles.
-
+--
 ## Características Principales
 - Registro de ingresos y gastos.
 - Categorización de transacciones.
