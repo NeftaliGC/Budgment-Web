@@ -36,6 +36,32 @@ data class AccountDto(
 )
 
 @Serializable
+data class AccountWithBalance(
+    val id: String,
+    val userId: String,
+    val name: String,
+    val currency: String,
+    val balance: String,
+    val balanceMinorUnits: Long? = null,
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val deletedAt: String? = null
+)
+
+@Serializable
+data class CreateAccountRequest(
+    val name: String,
+    val currency: String,
+    val initialBalance: String? = null
+)
+
+@Serializable
+data class UpdateAccountRequest(
+    val name: String? = null,
+    val currency: String? = null
+)
+
+@Serializable
 data class CategoryDto(
     val id: String,
     val userId: String,

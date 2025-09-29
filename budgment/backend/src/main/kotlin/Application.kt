@@ -1,6 +1,6 @@
 package com.nintech
 
-import com.nintech.Auth.AuthConfig
+import com.nintech.Auth.authConfig
 import io.ktor.server.application.*
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
@@ -16,7 +16,7 @@ fun Application.module() {
         modules(applicationConfig)
     }
 
-    AuthConfig()
+    authConfig()
     configureMonitoring()
     configureHTTP()
     configureRouting()

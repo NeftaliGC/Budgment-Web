@@ -13,7 +13,7 @@ import org.koin.core.qualifier.named
 import org.koin.ktor.ext.inject
 
 
-fun Application.AuthConfig() {
+fun Application.authConfig() {
     val secret: String by inject(named("secret"))
     val issuer: String by inject(named("issuer"))
     val audience: String by inject(named("audience"))
@@ -24,7 +24,7 @@ fun Application.AuthConfig() {
             cookie.httpOnly = true
             cookie.path = "/"
             cookie.maxAgeInSeconds = 15 * 60
-            cookie.secure = this@AuthConfig
+            cookie.secure = this@authConfig
                 .environment.config
                 .propertyOrNull("ktor.deployment.ssl")
                 ?.getString()
@@ -35,7 +35,7 @@ fun Application.AuthConfig() {
             cookie.path = "/users/refresh"
             cookie.maxAgeInSeconds = 7 * 24 * 60 * 60
             cookie.httpOnly = true
-            cookie.secure = this@AuthConfig
+            cookie.secure = this@authConfig
                 .environment
                 .config
                 .propertyOrNull("ktor.deployment.ssl")
