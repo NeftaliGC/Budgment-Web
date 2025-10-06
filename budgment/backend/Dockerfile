@@ -1,6 +1,8 @@
 FROM gradle:jdk23-corretto AS build
 WORKDIR /backend
 COPY . .
+ARG JWT_SECRET
+ENV JWT_SECRET=$JWT_SECRET
 RUN gradle build --no-daemon
 
 FROM eclipse-temurin:23.0.2_7-jre-ubi9-minimal
