@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 object DatabaseFactory {
     private var dataSource: HikariDataSource? = null
 
-    fun connect(url: String = "jdbc:sqlite:../data/budgment.sqlite") {
+    fun connect(url: String = "jdbc:sqlite:./data/budgment.sqlite") {
         val config = HikariConfig().apply {
             jdbcUrl = url
             driverClassName = "org.sqlite.JDBC"
