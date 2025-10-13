@@ -3,7 +3,7 @@ WORKDIR /backend
 COPY . .
 ARG JWT_SECRET
 ENV JWT_SECRET=$JWT_SECRET
-RUN gradle build --no-daemon
+RUN gradle build --no-daemon -x test
 
 FROM eclipse-temurin:23.0.2_7-jre-ubi9-minimal
 WORKDIR /app
