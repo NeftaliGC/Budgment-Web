@@ -10,5 +10,6 @@ WORKDIR /app
 COPY --from=build /backend/build/libs/*.jar app.jar
 COPY --from=build /backend/data /app/data
 COPY entrypoint.sh /app/entrypoint.sh
+EXPOSE 8080
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]
