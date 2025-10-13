@@ -1,5 +1,3 @@
--- Crea una base de datos SQLite cn el nombre 'budgment.sqlite' y ejecuta este script para inicializar las tablas.
-
 PRAGMA foreign_keys = ON;
 
 -- USERS
@@ -111,5 +109,3 @@ CREATE INDEX IF NOT EXISTS idx_categories_user ON categories(user_id);
 CREATE INDEX IF NOT EXISTS idx_budgets_user_start_end ON budgets(user_id, start_date, end_date);
 CREATE INDEX IF NOT EXISTS idx_recurring_next ON recurring_transactions(next_occurrence);
 CREATE INDEX IF NOT EXISTS idx_recurring_user ON recurring_transactions(user_id);
-
-COMMIT;
