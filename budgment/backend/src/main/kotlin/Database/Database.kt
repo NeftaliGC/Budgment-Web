@@ -56,15 +56,13 @@ object DatabaseFactory {
             conn.createStatement().use { stmt ->
                 stmt.executeUpdate("PRAGMA foreign_keys = OFF;")
                 stmt.executeUpdate("BEGIN TRANSACTION;")
-                seedSql.split(";")
-                    .map { it.trim() }
-                    .filter { it.isNotEmpty() }
-                    .forEach { stmt.executeUpdate(it) }
+                stmt.executeUpdate(seedSql)
                 stmt.executeUpdate("COMMIT;")
                 stmt.executeUpdate("PRAGMA foreign_keys = ON;")
             }
         }
     }
+
 }
 
 suspend fun <T> dbQuery(block: suspend () -> T): T =
