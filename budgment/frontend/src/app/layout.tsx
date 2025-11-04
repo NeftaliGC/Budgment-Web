@@ -1,43 +1,31 @@
-
-"use client";
-
-import { Geist, Geist_Mono } from "next/font/google";
-import InitialSplash from "@/components/InitialSplash";
-import { useEffect, useState } from "react";
 import "@/styles/globals.css";
+import { Geist, Geist_Mono } from "next/font/google";
+import LayoutClient from "./LayoutClient"; // importamos el cliente
 
 const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Budgment Web",
+};
 
 export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;  
-}>) {
-
-	const [splashVisible, setSplashVisible] = useState(true);
-
-	useEffect(() => {
-		const timer = setTimeout(() => setSplashVisible(false), 1500); // igual que splash showDuration + fade
-		return () => clearTimeout(timer);
-	}, []);
-
-	return (  
-		<html lang="es">
-			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<InitialSplash />
-				<div style={{ display: splashVisible ? "none" : "block" }}>
-					{children}
-				</div>
-			</body>
-		</html>
-	);
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="es">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <LayoutClient>{children}</LayoutClient>
+      </body>
+    </html>
+  );
 }

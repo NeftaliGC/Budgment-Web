@@ -1,0 +1,61 @@
+/* src/components/Sidebar/sidebar.module.css */
+
+.sidebar {
+  width: 86px; /* ajusta como en tu boceto */
+  background: var(--sidebar-bg, #01796F);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  gap: 1.25rem;
+  border-radius: 12px;
+}
+
+.logoWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoText {
+  font-size: 0.75rem;
+  display: none; /* muestra en hover o en pantalla grande si quieres */
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  transition: background 0.15s ease;
+  border-radius: 10px;
+}
+
+.item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-size: 0.7rem;
+  text-align: center;
+}
