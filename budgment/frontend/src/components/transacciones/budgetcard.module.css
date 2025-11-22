@@ -1,0 +1,58 @@
+.card {
+  background: #0e7c69;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.limit {
+  font-size: 13px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.progressWrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.progressBar {
+  width: 140px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #f7a500;
+  border-radius: 8px 0 0 8px;
+}
+
+.percent {
+  font-size: 13px;
+  min-width: 30px;
+}

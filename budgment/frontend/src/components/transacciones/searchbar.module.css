@@ -1,0 +1,78 @@
+.searchRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.inputWrap {
+  flex: 1;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 20px;
+  border: 2px solid #0d7b69;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: #0d7b69;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn {
+  background: #fff;
+  border: 2px solid #0d7b69;
+  color: #0d7b69;
+  padding: 6px 12px;
+  border-radius: 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.filtersInline {
+  display: flex;
+  gap: 6px;
+}
+
+.filterBtn {
+  background: rgba(13, 123, 105, 0.08);
+  border: 1px solid rgba(13, 123, 105, 0.14);
+  color: #0a6a58;
+  padding: 6px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.filterBtn.active {
+  background: #0d7b69;
+  color: white;
+}
+
+.viewToggle {
+  background: #0a6a58;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}

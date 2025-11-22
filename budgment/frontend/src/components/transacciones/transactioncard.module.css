@@ -1,0 +1,45 @@
+.card {
+  background: #0e7c69;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 260px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.amount {
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+.right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date {
+  font-size: 13px;
+}
+
+.category {
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
