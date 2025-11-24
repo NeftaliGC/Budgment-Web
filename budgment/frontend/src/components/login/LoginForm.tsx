@@ -1,17 +1,74 @@
+"use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import styles from "@/styles/login/login.module.css";
 
 export default function LoginForm() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    interface LoginCredentials {
+        username: string;
+        password: string;
+    }
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
+        e.preventDefault();
+
+        try {
+            const payload: LoginCredentials = { username, password };
+
+            const res: Response = await fetch("http://localhost:8080/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",   // ← MUY IMPORTANTE
+                body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+                setError("Usuario o contraseña incorrectos");
+                return;
+            }
+
+            // la cookie HttpOnly ya queda guardada sola
+            window.location.href = "/";
+        } catch (err) {
+            setError(`Error al conectar con el servidor: ${err}`);
+        }
+    }
+
     return (
-        <div className="login-form-container">
-            <form className="login-form">
-                <input type="email" placeholder="Usuario" required />
-                <input type="password" placeholder="Contraseña" required />
+        <div className={styles.loginFormContainer}>
+            <form className={styles.loginForm} onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Usuario"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder="Contraseña"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
                 <button type="submit">Iniciar sesión</button>
-                <p className="forgot-password">
+
+                {error && <p className={styles.error}>{error}</p>}
+
+                <p className={styles.forgotPassword}>
                     <Link href="/forgot-password">¿Olvidaste tu contraseña?</Link>
                 </p>
-                <p className="register">
+
+                <p className={styles.register}>
                     ¿No tienes cuenta? <Link href="/register">Regístrate</Link>
                 </p>
             </form>

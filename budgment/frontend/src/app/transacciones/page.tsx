@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import styles from "./transacciones.module.css";
+import styles from "@/styles/transacciones/transacciones.module.css";
 import SearchBar from "../../components/transacciones/SearchBar";
 import TransactionsGrid from "../../components/transacciones/TransactionsGrid";
 import BudgetCard from "../../components/transacciones/BudgetCard";
 import { TRANSACTIONS_MOCK, BUDGETS_MOCK } from "../../components/transacciones/TransaccionesMocks";
 
-export default function TransaccionesPage(): JSX.Element {
+export default function TransaccionesPage(): React.ReactElement {
   const [query, setQuery] = useState("");
   const [view, setView] = useState<"grid" | "list">("grid");
   const [activeFilter, setActiveFilter] = useState<string | null>(null);

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import InitialSplash from "@/components/InitialSplash";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import "@/styles/globals.css";
 
 export default function LayoutClient({
   children,
@@ -26,7 +27,7 @@ export default function LayoutClient({
         display: "flex",
         height: "100vh", // <- importante: limita a la altura visible
         overflow: "hidden", // <- evita scrolls innecesarios
-        backgroundColor: "#002b24ff",
+        backgroundColor: "var(--bg)",
       }}
     >
       <Sidebar />
@@ -41,7 +42,7 @@ export default function LayoutClient({
       >
         <div
           style={{
-            backgroundColor: "#f3fff9ff",
+            backgroundColor: "var(--surface)",
             width: "98%",
             height: "98%",
             borderRadius: "20px",

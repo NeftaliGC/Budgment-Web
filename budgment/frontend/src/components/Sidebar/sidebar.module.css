@@ -2,7 +2,7 @@
 
 .sidebar {
   width: 86px; /* ajusta como en tu boceto */
-  background: var(--sidebar-bg, #01796F);
+  background: var(--acction-bar);
   color: white;
   display: flex;
   flex-direction: column;

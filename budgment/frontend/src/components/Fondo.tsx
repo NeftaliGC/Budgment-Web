@@ -5,11 +5,10 @@ interface FondoProps {
   color?: string; // opcional: puedes personalizar el color
 }
 
-const Fondo: React.FC<FondoProps> = ({ children, color = "--bg" }) => {
+const Fondo: React.FC<FondoProps> = ({ children }) => {
   return (
     <div
       style={{
-        backgroundColor: color,
         width: "100vw",
         height: "100vh",
         display: "flex",
