@@ -44,7 +44,7 @@ fun Route.userRoutes() {
             }
         }
 
-        get("/login") {
+        post("/login") {
             val req = call.receive<UserLogin>()
 
             try {

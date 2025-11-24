@@ -16,12 +16,19 @@ import org.slf4j.event.*
 
 fun Application.configureHTTP() {
     install(CORS) {
+        allowCredentials = true // <- MUY IMPORTANTE
+
+        // Tu frontend (Next.js)
+        allowHost("localhost:3000", schemes = listOf("http"))
+
         allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Post)   // <- NECESARIO
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
+
+        allowHeader(HttpHeaders.ContentType)  // <- NECESARIO para JSON
         allowHeader(HttpHeaders.Authorization)
-        allowHeader("MyCustomHeader")
-        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
+
 }

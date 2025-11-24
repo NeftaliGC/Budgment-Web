@@ -43,4 +43,6 @@ class AccountEntity(id: EntityID<String>): Entity<String>(id) {
         updatedAt = updatedAt?.toString(),
         deletedAt = deletedAt?.toString()
     )
+
+
 }
