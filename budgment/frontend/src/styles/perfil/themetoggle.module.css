@@ -1,0 +1,47 @@
+.themeToggle {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.themeToggle.light {
+  background: var(--action-bar);
+  color: var(--card-text);
+}
+
+.themeToggle.light:hover {
+  background: var(--castleton-green);
+  transform: scale(1.1);
+}
+
+.themeToggle.dark {
+  background: var(--highlight);
+  color: var(--night);
+}
+
+.themeToggle.dark:hover {
+  background: var(--orange-peel);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .themeToggle {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+}
