@@ -1,0 +1,65 @@
+.page {
+  padding: 18px;
+  height: calc(100vh - 36px);
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.panel {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 18px;
+  height: 100%;
+  box-shadow: 0 4px 0 rgba(10, 10, 10, 0.06);
+  border: 6px solid var(--action-bar);
+  overflow: auto;
+  position: relative;
+}
+
+.header {
+  background: var(--action-bar);
+  color: var(--card-text);
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.viewAllButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewAllLink {
+  padding: 10px 24px;
+  background: var(--action-bar);
+  color: var(--card-text);
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.viewAllLink:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .controls {
+    flex-direction: column;
+  }
+}
