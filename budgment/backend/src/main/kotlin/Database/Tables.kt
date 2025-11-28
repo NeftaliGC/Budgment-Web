@@ -37,8 +37,8 @@ object AccountsTable : IdTable<String>("accounts") {
     }
 }
 
-object CategoriesTable : Table("categories") {
-    val id = varchar("id", 36)
+object CategoriesTable : IdTable<String>("categories") {
+    override val id = varchar("id", 36).entityId()
     val userId = varchar("user_id", 36).references(UsersTable.id, onDelete = ReferenceOption.CASCADE)
     val name = varchar("name", 200)
     val type = varchar("type", 20) // 'Gasto'|'Ingreso' — valida en app
@@ -74,8 +74,8 @@ object RecurringTransactionsTable : Table("recurring_transactions") {
     }
 }
 
-object TransactionsTable : Table("transactions") {
-    val id = varchar("id", 36)
+object TransactionsTable : IdTable<String>("transactions") {
+    override val id = varchar("id", 36).entityId()
     val userId = varchar("user_id", 36).references(UsersTable.id, onDelete = ReferenceOption.CASCADE)
     val accountId = varchar("account_id", 36).references(AccountsTable.id, onDelete = ReferenceOption.RESTRICT)
     val categoryId = varchar("category_id", 36).references(CategoriesTable.id, onDelete = ReferenceOption.SET_NULL).nullable()

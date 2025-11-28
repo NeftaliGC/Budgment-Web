@@ -133,3 +133,45 @@ data class BudgetCategoryDto(
     val categoryId: String,
     val createdAt: String? = null
 )
+
+// --- Nuevos DTOs de request/updates para endpoints ---
+
+@Serializable
+data class CreateCategoryRequest(
+    val name: String,
+    val type: String
+)
+
+@Serializable
+data class UpdateCategoryRequest(
+    val name: String? = null,
+    val type: String? = null
+)
+
+@Serializable
+data class CreateTransactionRequest(
+    val accountId: String,
+    val amount: Long,
+    val currency: String? = null,
+    val categoryId: String? = null,
+    val description: String? = null,
+    val date: String,
+    val transferToAccountId: String? = null
+)
+
+@Serializable
+data class UpdateTransactionRequest(
+    val accountId: String? = null,
+    val amount: Long? = null,
+    val currency: String? = null,
+    val categoryId: String? = null,
+    val description: String? = null,
+    val date: String? = null
+)
+
+@Serializable
+data class TotalBalanceDto(
+    val userId: String,
+    val total: String,           // decimal string
+    val totalMinorUnits: Long    // centavos
+)

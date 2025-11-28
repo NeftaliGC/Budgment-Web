@@ -1,5 +1,5 @@
 "use client";
-
+import { API_BASE } from "@/config/api";
 import { useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/login/register.module.css"
@@ -14,7 +14,7 @@ export default function RegisterForm() {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:8080/users/sign_in", {
+            const res = await fetch(`${API_BASE}/users/sign_in`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

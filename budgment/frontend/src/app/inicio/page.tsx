@@ -1,9 +1,14 @@
+'use client';
+
 import '@/styles/globals.css';
+import { API_BASE } from '@/config/api';
+import { userId } from '@/config/userId';
 import { ActionBarList } from '@/components/actionbar/actionbar';
 import ContentSection from '@/components/ContentSection';
 import DisplayCard from '@/components/inicio/DisplayCard';
 import BudgetCard from '@/components/transacciones/BudgetCard';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function InicioPages() {
 
@@ -14,11 +19,45 @@ export default function InicioPages() {
         {label: "🧾 Nuevo Presupuesto"},
     ]
 
-    const general = [
-        {title: "Saldo Disponible", value: "$5,000.00", logo: "/wallet.svg"},
-        {title: "Ingresos del mes", value: "$5,000.00", logo: "/up_stats.svg"},
-        {title: "Gastos del mes", value: "$5,000.00", logo: "/down_stats.svg"},
-    ]
+    const generalBase = [
+        { title: "Saldo Disponible", value: null, logo: "/wallet.svg", endpoint: `/users/${userId}/accounts/total_balance` },
+        { title: "Ingresos del mes", value: null, logo: "/up_stats.svg", endpoint: `/users/${userId}/accounts/last_month/income` },
+        { title: "Gastos del mes", value: null, logo: "/down_stats.svg", endpoint: `/users/${userId}/accounts/last_month/expense` },
+    ];
+
+    const [general, setGeneral] = useState(generalBase);
+
+    useEffect(() => {
+        async function fetchGeneral() {
+            try {
+                const results = await Promise.all(
+                    generalBase.map(async (item) => {
+                        // peticion con headers
+                        const res = await fetch(
+                            `${API_BASE}${item.endpoint}`, 
+                            { method: 'GET', 
+                                headers: { 
+                                    'Content-Type': 'application/json', 
+                                    'Authorization': `Bearer ${sessionStorage.getItem("token")}` 
+                                } 
+                            }
+                        );
+                        const data = await res.json();
+                        return {
+                            ...item,
+                            value: data.total   // << 🔹 solo actualización del campo value
+                        };
+                    })
+                );
+
+                setGeneral(results);
+            } catch (err) {
+                console.error("Error cargando general:", err);
+            }
+        }
+
+        fetchGeneral();
+    }, []);
 
     const cuentas = [
         {title: "Cuenta A", balance: "$1,200.00", logo: "/card.svg"},

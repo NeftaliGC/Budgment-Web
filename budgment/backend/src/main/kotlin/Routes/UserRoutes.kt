@@ -56,6 +56,7 @@ fun Route.userRoutes() {
                         .withAudience(audience)
                         .withIssuer(issuer)
                         .withClaim("username", user.username)
+                        .withClaim("userId", user.id)
                         .withExpiresAt(Date(System.currentTimeMillis() + 15 * 60 * 1000))
                         .sign(Algorithm.HMAC256(secret))
 
@@ -63,12 +64,15 @@ fun Route.userRoutes() {
                         .withAudience(audience)
                         .withIssuer(issuer)
                         .withClaim("username", user.username)
+                        .withClaim("userId", user.id)
                         .withExpiresAt(Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000))
                         .sign(Algorithm.HMAC256(secret))
 
                     call.sessions.set(UserSession(accessToken))
                     call.sessions.set(RefreshSession(refreshToken))
-                    call.respond(HttpStatusCode.OK)
+
+                    // devolver tokens también en el body para uso por API, ahora incluyendo userId
+                    call.respond(HttpStatusCode.OK, mapOf("accessToken" to accessToken, "refreshToken" to refreshToken, "userId" to user.id))
                 } else {
                     call.respond(HttpStatusCode.Unauthorized, mapOf("error" to ("Usuario o Contraseña invalidos")))
                 }
@@ -102,11 +106,13 @@ fun Route.userRoutes() {
                         .verify(token)
 
                     val username = decoded.getClaim("username").asString()
+                    val userId = decoded.getClaim("userId").asString()
 
                     val newAccessToken = JWT.create()
                         .withIssuer(issuer)
                         .withAudience(audience)
                         .withClaim("username", username)
+                        .withClaim("userId", userId)
                         .withExpiresAt(Date(System.currentTimeMillis() + 15 * 60 * 1000))
                         .sign(Algorithm.HMAC256(secret))
 
@@ -114,12 +120,13 @@ fun Route.userRoutes() {
                         .withIssuer(issuer)
                         .withAudience(audience)
                         .withClaim("username", username)
+                        .withClaim("userId", userId)
                         .withExpiresAt(Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000))
                         .sign(Algorithm.HMAC256(secret))
 
                     call.sessions.set(UserSession(newAccessToken))
                     call.sessions.set(RefreshSession(newRefreshToken))
-                    call.respond(HttpStatusCode.OK)
+                    call.respond(HttpStatusCode.OK, mapOf("accessToken" to newAccessToken, "refreshToken" to newRefreshToken, "userId" to userId))
                 } catch (e: IllegalArgumentException) {
                     call.respond(HttpStatusCode.BadRequest, mapOf("error" to (e.message ?: "invalid")))
                 } catch (e: Exception) {

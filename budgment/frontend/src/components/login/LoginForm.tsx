@@ -1,5 +1,5 @@
 "use client";
-
+import { API_BASE } from "@/config/api";
 import { useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/login/login.module.css";
@@ -20,7 +20,7 @@ export default function LoginForm() {
         try {
             const payload: LoginCredentials = { username, password };
 
-            const res: Response = await fetch("http://localhost:8080/users/login", {
+            const res: Response = await fetch(`${API_BASE}/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -34,8 +34,17 @@ export default function LoginForm() {
                 return;
             }
 
+            // guardar user id en el almacenamiento de sesión
+
+            const data = await res.json();
+            sessionStorage.setItem("userId", data.userId);
+
+            // guardar token en el almacenamiento de sesión
+            sessionStorage.setItem("token", data.accessToken);
+            
             // la cookie HttpOnly ya queda guardada sola
             window.location.href = "/";
+
         } catch (err) {
             setError(`Error al conectar con el servidor: ${err}`);
         }

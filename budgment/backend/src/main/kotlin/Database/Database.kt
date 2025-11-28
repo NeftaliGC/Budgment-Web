@@ -6,8 +6,9 @@ import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import java.io.File
-import java.sql.Connection
 import java.sql.DriverManager
+import com.nintech.Database.TransactionsTable
+import org.jetbrains.exposed.sql.transactions.TransactionManager
 
 object DatabaseFactory {
     private var dataSource: HikariDataSource? = null
@@ -67,3 +68,17 @@ object DatabaseFactory {
 
 suspend fun <T> dbQuery(block: suspend () -> T): T =
     newSuspendedTransaction(Dispatchers.IO) { block() }
+
+// Helper para sumar montos de transacciones de una cuenta usando SQL SUM (devuelve 0 si no hay registros)
+fun transactionsSumForAccount(accountId: String): Long {
+    val tx = TransactionManager.current()
+    // Escapar simple de comillas para evitar inyección (accountId debe ser UUID)
+    val escaped = accountId.replace("'", "''")
+    val sql = "SELECT SUM(amount) AS s FROM transactions WHERE account_id = '$escaped'"
+    return tx.exec(sql) { rs ->
+        if (rs.next()) {
+            val v = rs.getLong(1)
+            if (rs.wasNull()) 0L else v
+        } else 0L
+    } ?: 0L
+}
