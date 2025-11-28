@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/perfil/perfil.module.css";
-import ThemeToggle from "../../components/perfil/ThemeToggle";
 
 export default function PerfilPage() {
   const [mounted, setMounted] = useState(false);
@@ -53,21 +52,13 @@ export default function PerfilPage() {
               <div className={styles.value}>alexgomez</div>
             </div>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Correo electrónico</label>
-              <div className={styles.value}>alexgomez@email.com</div>
-            </div>
-
             <div className={styles.logoutButton}>
               <a href="#" className={styles.logoutLink}>
-                Carrar sesión
+                Cerrar sesión
               </a>
             </div>
           </section>
         </div>
-
-        {/* Theme Toggle Button */}
-        <ThemeToggle />
       </div>
   );
 }
