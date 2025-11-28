@@ -46,7 +46,7 @@ export default function LayoutClient({
             width: "98%",
             height: "98%",
             borderRadius: "20px",
-            overflow: "hidden", // <- permite scroll solo dentro del div si hay mucho contenido
+            overflowY: "auto", // <- permite scroll solo dentro del div si hay mucho contenido
           }}
         >
           {children}

@@ -10,13 +10,13 @@
   --falu-red: #7a1613ff;
 
   /* Light Theme (default) */
-  --bg: #f2fbf7;
-  --surface: #fffefc;
-  --text: #0d1111;
-  --foreground: #0d1111;
-  --action-bar: #0d7b69;
-  --options-bar: #0d7b69;
-  --highlight: #ffa114;
+  --bg: var(--dark-green);
+  --surface: var(--mint-cream);
+  --text: var(--night);
+  --foreground: var(--mint-cream);
+  --acction-bar: var(--pine-green);
+  --options-bar: var(--pine-green);
+  --highlight: var(--orange-peel);
   --card-bg: #0e7c69;
   --card-text: #ffffff;
   --muted: #2b6b63;
@@ -25,12 +25,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Theme */
-    --bg: #0d1111;
-    --surface: #1a2625;
-    --text: #f3fff9;
-    --foreground: #f3fff9;
-    --action-bar: #01796f;
-    --options-bar: #01796f;
+
+    --bg: var(--castleton-green);
+    --surface: var(--dark-green);
+    --acction-bar: var(--dark-green);
+    --options-bar: var(--castleton-green);
+    --text: var(--mint-cream);
+    --foreground: #f3fff9;;
     --highlight: #ff9800;
     --card-bg: #0b5d44;
     --card-text: #f3fff9;

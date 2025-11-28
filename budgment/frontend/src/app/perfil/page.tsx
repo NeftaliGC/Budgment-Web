@@ -14,7 +14,6 @@ export default function PerfilPage() {
   if (!mounted) return null;
 
   return (
-    <main className={styles.page}>
       <div className={styles.panel}>
         {/* Header */}
         <header className={styles.header}>
@@ -70,6 +69,5 @@ export default function PerfilPage() {
         {/* Theme Toggle Button */}
         <ThemeToggle />
       </div>
-    </main>
   );
 }
