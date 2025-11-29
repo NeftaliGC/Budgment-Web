@@ -4,3 +4,5 @@
 *.db
 *.db-journal
 *.log
+
+/dockerImages

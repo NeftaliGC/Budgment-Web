@@ -1,0 +1,23 @@
+finance-app:
+    type: article
+    title: Personal finance management application. TEM J
+    author: ["Stefanov T", "Stefanova M", "Varbanova S", "Temelkov S."]
+    volume: 13
+    page-total: 10
+    date: 2024
+    url:
+        value: https://www.temjournal.com/content/133/TEMJournalAugust2024_2066_2075.pdf
+
+
+personal-finance:
+    type: article
+    title: "Transforming Money Management: Analyzing The Impact Of Technology On Personal Finance"
+    author:
+        - Panchal
+        - Shubham and Mohadkar
+        - Anup D.
+    page-total: 16
+    date: 2024-11-18
+    url:
+        value: https://ssrn.com/abstract=5031477
+        date: 2025-01-21
