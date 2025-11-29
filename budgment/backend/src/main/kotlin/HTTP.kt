@@ -20,6 +20,7 @@ fun Application.configureHTTP() {
 
         // Tu frontend (Next.js)
         allowHost("localhost:3000", schemes = listOf("http"))
+        allowHost("api.budgment.nintech.engineer", schemes = listOf("http"))
 
         allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Post)   // <- NECESARIO
