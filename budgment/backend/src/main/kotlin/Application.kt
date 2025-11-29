@@ -16,6 +16,27 @@ fun Application.module() {
         modules(applicationConfig)
     }
 
+    install(Sessions) {
+        cookie<UserSession>("SESSION") {
+            cookie.path = "/"
+            cookie.httpOnly = true
+            cookie.secure = true                     // OBLIGATORIO EN HTTPS
+            cookie.maxAgeInSeconds = 15 * 60         // Igual al access token
+            cookie.sameSite = SameSite.None          // OBLIGATORIO ENTRE DOMINIOS
+            cookie.domain = "tudominio.com"          // IMPORTANTE
+        }
+
+        cookie<RefreshSession>("REFRESH") {
+            cookie.path = "/"
+            cookie.httpOnly = true
+            cookie.secure = true
+            cookie.maxAgeInSeconds = 7 * 24 * 60 * 60
+            cookie.sameSite = SameSite.None
+            cookie.domain = "tudominio.com"
+        }
+    }
+
+
     authConfig()
     configureMonitoring()
     configureHTTP()
