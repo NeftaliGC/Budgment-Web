@@ -9,7 +9,7 @@
   align-items: center;
   padding: 1rem 0.5rem;
   gap: 1.25rem;
-  border-radius: 12px;
+  border-radius: 0 10px 10px 0;
 }
 
 .logoWrap {
@@ -45,8 +45,9 @@
   border-radius: 10px;
 }
 
-.item:hover {
-  background: rgba(255,255,255,0.06);
+.item:hover{
+  background: var(--highlight);
+  color: var(--night);
 }
 
 .iconWrap {

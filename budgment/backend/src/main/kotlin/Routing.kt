@@ -4,6 +4,7 @@ import com.nintech.Routes.userRoutes
 import com.nintech.Routes.accountsRoutes
 import com.nintech.Routes.categoriesRoutes
 import com.nintech.Routes.transactionsRoutes
+import com.nintech.Routes.budgetsRoutes
 import com.nintech.Services.UserService
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -32,6 +33,7 @@ fun Application.configureRouting() {
         accountsRoutes()
         categoriesRoutes()
         transactionsRoutes()
+        budgetsRoutes()
     }
 
 }

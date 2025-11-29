@@ -1,10 +1,12 @@
 package com.nintech
 
 import com.nintech.Repositories.AccountRepository
+import com.nintech.Repositories.BudgetRepository
 import com.nintech.Repositories.CategoryRepository
 import com.nintech.Repositories.TransactionRepository
 import com.nintech.Repositories.UserRepository
 import com.nintech.Services.AccountService
+import com.nintech.Services.BudgetService
 import com.nintech.Services.CategoryService
 import com.nintech.Services.UserService
 import com.nintech.Services.TransactionService
@@ -23,6 +25,8 @@ val applicationConfig = module {
 
     single { CategoryRepository() }
     single { CategoryService(get()) }
+    single { BudgetRepository() }
+    single { BudgetService(get()) }
 
     single<String>(qualifier = named("secret")) {
         System.getenv("JWT_SECRET")

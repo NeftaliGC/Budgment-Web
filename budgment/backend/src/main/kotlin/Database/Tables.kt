@@ -97,8 +97,8 @@ object TransactionsTable : IdTable<String>("transactions") {
     }
 }
 
-object BudgetsTable : Table("budgets") {
-    val id = varchar("id", 36)
+object BudgetsTable : IdTable<String>("budgets") {
+    override val id = varchar("id", 36).entityId()
     val userId = varchar("user_id", 36).references(UsersTable.id, onDelete = ReferenceOption.CASCADE)
     val name = varchar("name", 200)
     val amountLimit = long("amount_limit")
